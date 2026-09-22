@@ -1,10 +1,124 @@
-# 📘 Homework2 - Java Examples
+# Java Socket Programming (TCP/UDP)
+
+Bộ ví dụ minh họa lập trình mạng nâng cao trong Java, tập trung vào **Socket Programming** với cả giao thức **TCP** (Echo Server/Client, xử lý đơn luồng và đa luồng) và **UDP Multicast**. Dự án dùng cho mục đích học tập, quản lý bằng **Maven**.
 
 ---
 
-## 📁 Cấu trúc dự án
+## Giới thiệu (About)
 
-<img width="500" alt="image" src="https://github.com/user-attachments/assets/4714d17a-5c51-4125-bec6-f97f6589af3e" />
+**Homework2** mở rộng từ Homework1, đi sâu vào cách Java xây dựng ứng dụng client-server bằng `Socket` và `ServerSocket` (TCP), cũng như `MulticastSocket` (UDP). Dự án minh họa 3 mô hình chính:
+
+1. **Echo Server/Client cơ bản** – gửi và phản hồi (echo) một thông điệp duy nhất.
+2. **Chat Server đơn luồng** – server xử lý lần lượt từng client, minh họa hạn chế khi không dùng đa luồng.
+3. **Chat Server đa luồng** – server tạo một `WorkerThread` riêng cho mỗi client, cho phép phục vụ nhiều kết nối đồng thời.
+4. **UDP Multicast** – gửi một thông điệp tới nhiều máy nhận cùng lúc trong cùng nhóm multicast.
+
+---
+
+## Tính năng chính
+
+| Nhóm | File | Mô tả |
+|---|---|---|
+| Echo cơ bản | `EchoServer.java`, `EchoClient.java` | Server/Client TCP đơn giản, phản hồi lại đúng nội dung nhận được |
+| Chat đơn luồng | `EchoChatSingleServer.java`, `EchoChatClient.java` | Server xử lý tuần tự từng client (blocking, một client tại một thời điểm) |
+| Chat đa luồng | `EchoChatMultiServer.java`, `WorkerThread.java`, `EchoChatClient.java` | Server tạo thread riêng cho mỗi client, hỗ trợ nhiều kết nối song song |
+| UDP Multicast | `MulticastSender.java`, `MulticastReceiver.java` | Gửi/nhận dữ liệu broadcast tới nhóm multicast qua UDP |
+
+---
+
+## Công nghệ sử dụng
+
+| Thành phần | Phiên bản / Công cụ |
+|---|---|
+| Ngôn ngữ | Java 17+ |
+| Build tool | Maven |
+| Gói chính | `java.net` (`Socket`, `ServerSocket`, `MulticastSocket`), `java.io` |
+| IDE khuyến nghị | IntelliJ IDEA (Community/Ultimate), Eclipse hoặc VS Code |
+
+---
+
+## Cấu trúc dự án
+
+```
+Homework2/
+├── .idea/                                   # Cấu hình IntelliJ IDEA
+├── src/
+│   └── main/
+│       └── java/
+│           └── com/gpcoder/tcp/
+│               ├── EchoServer.java
+│               ├── EchoClient.java
+│               ├── EchoChatSingleServer.java
+│               ├── EchoChatMultiServer.java
+│               ├── EchoChatClient.java
+│               ├── WorkerThread.java
+│               ├── MulticastSender.java
+│               └── MulticastReceiver.java
+├── .gitignore
+├── pom.xml                                  # Cấu hình Maven
+└── README.md
+```
+
+---
+
+## Bắt đầu (Getting Started)
+
+### Yêu cầu
+
+- [JDK 17+](https://www.oracle.com/java/technologies/downloads/)
+- [Maven](https://maven.apache.org/)
+- IntelliJ IDEA / Eclipse / VS Code (tùy chọn)
+
+### Cài đặt
+
+```bash
+git clone https://github.com/nhunguy-swe/Homework2.git
+cd Homework2
+```
+
+### Chạy chương trình
+
+**1. Echo Server/Client cơ bản**
+
+```bash
+# Terminal 1 — chạy server trước
+java com.gpcoder.tcp.EchoServer
+
+# Terminal 2 — chạy client
+java com.gpcoder.tcp.EchoClient
+```
+
+**2. Chat Server đơn luồng**
+
+```bash
+# Terminal 1
+java com.gpcoder.tcp.EchoChatSingleServer
+
+# Terminal 2 (có thể mở nhiều terminal client)
+java com.gpcoder.tcp.EchoChatClient
+```
+
+**3. Chat Server đa luồng**
+
+```bash
+# Terminal 1
+java com.gpcoder.tcp.EchoChatMultiServer
+
+# Nhiều terminal client kết nối đồng thời
+java com.gpcoder.tcp.EchoChatClient
+```
+
+**4. UDP Multicast**
+
+```bash
+# Terminal 1 — máy nhận
+java com.gpcoder.tcp.MulticastReceiver
+
+# Terminal 2 — máy gửi
+java com.gpcoder.tcp.MulticastSender
+```
+
+> Có thể chạy trực tiếp từng file bằng nút **Run** trong IntelliJ IDEA/Eclipse thay vì dùng terminal.
 
 EchoChatClient.java
 ---
@@ -115,6 +229,20 @@ Run MulticastReceiver.java
 <img width="750" alt="image" src="https://github.com/user-attachments/assets/8836a932-b470-4daf-9106-bcfc3b05b287" />
 
 ---
-## 🔗 Tài liệu tham khảo
 
-- https://gpcoder.com/3679-xay-dung-ung-dung-client-server-voi-socket-trong-java/
+## Tài liệu tham khảo
+
+- [Xây dựng ứng dụng Client-Server với Socket trong Java – gpcoder.com](https://gpcoder.com/3679-xay-dung-ung-dung-client-server-voi-socket-trong-java/)
+
+---
+
+## Tác giả
+
+- GitHub: [@nhunguy-swe](https://github.com/nhunguy-swe)
+
+---
+
+## Giấy phép
+
+Dự án này được thực hiện cho mục đích học tập/bài tập cá nhân. Bạn có thể tham khảo, sử dụng lại code cho mục đích học tập.
+
