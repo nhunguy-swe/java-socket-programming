@@ -6,7 +6,7 @@ Bộ ví dụ minh họa lập trình mạng nâng cao trong Java, tập trung v
 
 ## Giới thiệu (About)
 
-**Homework2** mở rộng từ Homework1, đi sâu vào cách Java xây dựng ứng dụng client-server bằng `Socket` và `ServerSocket` (TCP), cũng như `MulticastSocket` (UDP). Dự án minh họa 3 mô hình chính:
+**java-socket-programming** mở rộng từ java-networking-examples, đi sâu vào cách Java xây dựng ứng dụng client-server bằng `Socket` và `ServerSocket` (TCP), cũng như `MulticastSocket` (UDP). Dự án minh họa 3 mô hình chính:
 
 1. **Echo Server/Client cơ bản** – gửi và phản hồi (echo) một thông điệp duy nhất.
 2. **Chat Server đơn luồng** – server xử lý lần lượt từng client, minh họa hạn chế khi không dùng đa luồng.
@@ -40,7 +40,7 @@ Bộ ví dụ minh họa lập trình mạng nâng cao trong Java, tập trung v
 ## Cấu trúc dự án
 
 ```
-Homework2/
+java-socket-programming/
 ├── .idea/                                   # Cấu hình IntelliJ IDEA
 ├── src/
 │   └── main/
@@ -72,8 +72,8 @@ Homework2/
 ### Cài đặt
 
 ```bash
-git clone https://github.com/nhunguy-swe/Homework2.git
-cd Homework2
+git clone https://github.com/nhunguy-swe/java-socket-programming.git
+cd java-socket-programming
 ```
 
 ### Chạy chương trình
